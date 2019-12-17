@@ -9,10 +9,19 @@ class RoomIO {
     }
 
     join(room) {
+        if (typeof room === "object") {
+            this.room[this.socket.id] = room;
+        } else {
+            if (this.room[this.socket.id]) {
+                if (!this.room[this.socket.id].includes(room)) {
+                    this.room[this.socket.id].push(room)
+                }
+            } else {
+                this.room[this.socket.id] = [room];
+            }
+        }
         this.leave();
-        this.room[this.socket.id] = room;
-
-        this.socket.join(room);
+        this.socket.join(this.room[this.socket.id]);
     }
 
     leave() {
