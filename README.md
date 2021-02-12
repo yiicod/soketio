@@ -13,7 +13,7 @@ Config
     cd ~
     curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
     sudo bash nodesource_setup.sh
-    cd vendor/yiicod/yii2-soketio/server
+    cd vendor/yiicod/yii2-socketio/server
     npm install
 ```
 
@@ -115,7 +115,7 @@ pm2 start daemons-app.json
     class CountEvent implements EventInterface, EventPubInterface
     {
         /**
-         * Changel name. For client side this is nsp.
+         * Channel name. For client side this is nsp.
          */
         public static function broadcastOn(): array
         {
@@ -161,7 +161,7 @@ pm2 start daemons-app.json
     class MarkAsReadEvent implements EventInterface, EventSubInterface
     {
         /**
-         * Changel name. For client side this is nsp.
+         * Channel name. For client side this is nsp.
          */
         public static function broadcastOn(): array
         {
@@ -209,7 +209,7 @@ You can have publisher and receiver in one event. If you need check data from cl
     class MarkAsReadEvent implements EventInterface, EventSubInterface, EventPolicyInterface
     {
         /**
-         * Changel name. For client side this is nsp.
+         * Channel name. For client side this is nsp.
          */
         public static function broadcastOn(): array
         {
@@ -260,7 +260,7 @@ Soket.io has room functionl. If you need it, you should implement:
         protected $userId;
         
         /**
-         * Changel name. For client side this is nsp.
+         * Channel name. For client side this is nsp.
          */
         public static function broadcastOn(): array
         {
@@ -281,7 +281,7 @@ Soket.io has room functionl. If you need it, you should implement:
          */
         public function room(): string
         {
-            return 'user_id_' . $this->>userId;
+            return 'user_id_' . $this->userId;
         }            
             
         /**
